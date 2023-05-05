@@ -7,13 +7,13 @@ codeunit 50100 "FS Example"
         Stream: InStream;
         FilePath: Text;
     begin
-        CreateOrderConfirmation(SalesHeader, TempBlob);
 
         FileSystem.Initialize(Enum::"File Scenario"::"Order Confirmation");
         FilePath := FileSystem.SaveFileUI('', 'pdf');
         if FilePath = '' then
             exit;
 
+        CreateOrderConfirmation(SalesHeader, TempBlob);
         TempBlob.CreateInStream(Stream);
         FileSystem.SetFile(FilePath, Stream);
     end;
