@@ -1,0 +1,39 @@
+{
+  "id": "05f7e5b2-bdbe-4769-b8b2-8db9ff442e18",
+  "name": "FileSystemExample",
+  "publisher": "IceOnly",
+  "version": "1.0.0.0",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [
+    {
+      "id":  "c9c54414-80c3-4cc9-98c6-589158882774",
+      "name":  "File Access",
+      "publisher":  "Microsoft",
+      "version":  "22.1.0.0"
+    }
+  ],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "22.0.0.0",
+  "idRanges": [
+    {
+      "from": 50100,
+      "to": 50149
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "11.0",
+  "features": [
+    "NoImplicitWith"
+  ]
+}
