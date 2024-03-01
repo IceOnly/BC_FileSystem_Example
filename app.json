@@ -11,12 +11,6 @@
   "url": "",
   "logo": "",
   "dependencies": [
-    {
-      "id":  "c9c54414-80c3-4cc9-98c6-589158882774",
-      "name":  "File Access",
-      "publisher":  "Microsoft",
-      "version":  "22.1.0.0"
-    }
   ],
   "screenshots": [],
   "platform": "1.0.0.0",
@@ -32,7 +26,7 @@
     "allowDownloadingSource": true,
     "includeSourceInSymbolFile": true
   },
-  "runtime": "11.0",
+  "runtime": "13.0",
   "features": [
     "NoImplicitWith"
   ]

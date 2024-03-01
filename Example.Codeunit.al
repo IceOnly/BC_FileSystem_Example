@@ -15,7 +15,8 @@ codeunit 50100 "FS Example"
 
         CreateOrderConfirmation(SalesHeader, TempBlob);
         TempBlob.CreateInStream(Stream);
-        FileSystem.SetFile(FilePath, Stream);
+        if not FileSystem.FileExists(FilePath) then
+            FileSystem.CreateFile(FilePath, Stream);
     end;
 
     internal procedure LookupFolderToStore(var FoldertoStore: Text[2048])
@@ -69,6 +70,6 @@ codeunit 50100 "FS Example"
         FileSystem.Initialize(Enum::"File Scenario"::"Order Confirmation");
         FilePath := FileSystem.CombinePath(FSSetup."Folder to Store", StrSubstNo(PDFNameLbl, SalesHeader."No."));
         if not FileSystem.FileExists(FilePath) then
-            FileSystem.SetFile(FilePath, Stream);
+            FileSystem.CreateFile(FilePath, Stream);
     end;
 }
