@@ -9,7 +9,7 @@ codeunit 50100 "FS Example"
     begin
 
         FileSystem.Initialize(Enum::"File Scenario"::"Order Confirmation");
-        FilePath := FileSystem.SaveFileUI('', 'pdf');
+        FilePath := FileSystem.SaveFile('', 'pdf');
         if FilePath = '' then
             exit;
 
@@ -25,7 +25,7 @@ codeunit 50100 "FS Example"
         NewFolder: Text;
     begin
         FileSystem.Initialize(Enum::"File Scenario"::"Order Confirmation");
-        NewFolder := FileSystem.SelectFolderUI(FoldertoStore);
+        NewFolder := FileSystem.SelectAndGetFolderPath(FoldertoStore);
         if NewFolder = '' then
             exit;
 
