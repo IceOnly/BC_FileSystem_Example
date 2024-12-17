@@ -2,30 +2,30 @@ codeunit 50100 "FS Example"
 {
     internal procedure StoreOrderConfirmation(SalesHeader: Record "Sales Header")
     var
-        FileSystem: Codeunit "File System";
+        ExternalFileStorage: Codeunit "External File Storage";
         TempBlob: Codeunit "Temp Blob";
         Stream: InStream;
         FilePath: Text;
     begin
 
-        FileSystem.Initialize(Enum::"File Scenario"::"Order Confirmation");
-        FilePath := FileSystem.SaveFile('', 'pdf');
+        ExternalFileStorage.Initialize(Enum::"File Scenario"::"Order Confirmation");
+        FilePath := ExternalFileStorage.SaveFile('', 'pdf');
         if FilePath = '' then
             exit;
 
         CreateOrderConfirmation(SalesHeader, TempBlob);
         TempBlob.CreateInStream(Stream);
-        if not FileSystem.FileExists(FilePath) then
-            FileSystem.CreateFile(FilePath, Stream);
+        if not ExternalFileStorage.FileExists(FilePath) then
+            ExternalFileStorage.CreateFile(FilePath, Stream);
     end;
 
     internal procedure LookupFolderToStore(var FoldertoStore: Text[2048])
     var
-        FileSystem: Codeunit "File System";
+        ExternalFileStorage: Codeunit "External File Storage";
         NewFolder: Text;
     begin
-        FileSystem.Initialize(Enum::"File Scenario"::"Order Confirmation");
-        NewFolder := FileSystem.SelectAndGetFolderPath(FoldertoStore);
+        ExternalFileStorage.Initialize(Enum::"File Scenario"::"Order Confirmation");
+        NewFolder := ExternalFileStorage.SelectAndGetFolderPath(FoldertoStore);
         if NewFolder = '' then
             exit;
 
@@ -52,7 +52,7 @@ codeunit 50100 "FS Example"
     local procedure OnAfterManualReleaseSalesDoc(var SalesHeader: Record "Sales Header"; PreviewMode: Boolean);
     var
         FSSetup: Record "FS Setup";
-        FileSystem: Codeunit "File System";
+        ExternalFileStorage: Codeunit "External File Storage";
         TempBlob: Codeunit "Temp Blob";
         Stream: InStream;
         FilePath: Text;
@@ -67,9 +67,9 @@ codeunit 50100 "FS Example"
         CreateOrderConfirmation(SalesHeader, TempBlob);
         TempBlob.CreateInStream(Stream);
 
-        FileSystem.Initialize(Enum::"File Scenario"::"Order Confirmation");
-        FilePath := FileSystem.CombinePath(FSSetup."Folder to Store", StrSubstNo(PDFNameLbl, SalesHeader."No."));
-        if not FileSystem.FileExists(FilePath) then
-            FileSystem.CreateFile(FilePath, Stream);
+        ExternalFileStorage.Initialize(Enum::"File Scenario"::"Order Confirmation");
+        FilePath := ExternalFileStorage.CombinePath(FSSetup."Folder to Store", StrSubstNo(PDFNameLbl, SalesHeader."No."));
+        if not ExternalFileStorage.FileExists(FilePath) then
+            ExternalFileStorage.CreateFile(FilePath, Stream);
     end;
 }
